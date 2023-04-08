@@ -30,8 +30,9 @@ crops, location_preds = utils.prepare_crops_(
 
 # print(crops)
 for cropped_img in crops:
-    os.mkdir("cropped_imgs")
-    cv2.imsave(os.path.join("cropped_imgs", cropped_img))
+    if not os.path.isdir("cropped_imgs"):
+        os.mkdir("cropped_imgs")
+    cv2.imwrite(os.path.join("cropped_imgs", cropped_img), )
 # trocr prediction
 recognition_predictor = indic_trocr(model_path="trocr_files")
 
