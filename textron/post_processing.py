@@ -36,7 +36,7 @@ def get_bboxes(file):
         if cv2.contourArea(c) > 30:
             bboxes.append(['text',1,x, y, w, h])
 
-    final_img = cv2.imread(INPUT_IMG_DIR + file)
+    final_img = cv2.imread(file) #(INPUT_IMG_DIR + file)
     for b in bboxes:
         x = b[2]
         y = b[3]

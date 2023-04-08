@@ -6,8 +6,8 @@ torch.cuda.empty_cache()
 
 
 ### Path to the Data and Results directories
-INPUT_DATA_DIR = "../data/doctr-detection/Archive/val"  #'./../processed/docbank_100/'
-RESULTS_DATA_DIR = "../results-dataprogramming"
+INPUT_DATA_DIR = "."  #'./../processed/docbank_100/'
+RESULTS_DATA_DIR = "results-dataprogramming"
 
 ### class for defining the format of the groundtruth
 class GroundTruthFormat(Enum):
