@@ -260,7 +260,7 @@ def analysis(img):
     rules.add_lf_list(LFS)
 
     R = np.zeros((lf.pixels.shape[0],len(rules.get_lfs())))
-    Y = io.imread(INPUT_IMG_DIR + img)
+    Y = io.imread(img) #(INPUT_IMG_DIR + img)
     
     name = img[:len(img) - 8]
     
@@ -416,7 +416,7 @@ def cage(file, X):
     os.remove(U_path_pkl)
     os.remove(log_path_cage_1)
     os.remove(path_json)
-    # io.imsave(RESULTS_DIR + file, labels)
+    io.imsave(RESULTS_DIR + file, labels)
 
 
 ### Main Code
