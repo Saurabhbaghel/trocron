@@ -4,6 +4,7 @@ import cv2
 import shutil
 from trocr import indic_trocr
 import utils
+from PIL import Image
 
 image_name = "ABBv3_4_ori.jpg"
 pages = []
@@ -30,13 +31,18 @@ crops, location_preds = utils.prepare_crops_(
 # print(crops)
 for cropped_img in crops:
     os.mkdir("cropped_imgs")
-    cv2.imread(os.path.join("cropped_imgs", cropped_img))
+    cv2.imsave(os.path.join("cropped_imgs", cropped_img))
 # trocr prediction
 recognition_predictor = indic_trocr(model_path="trocr_files")
-word_preds = recognition_predictor(crops[0])
+
+for img in os.listdir("cropped_imgs"):
+    img_ = Image.open(os.path.join("cropped_imgs", img)).convert("RGB")
+    
+    word_preds = recognition_predictor(img_)
+    print(word_preds["preds"])
 
 shutil.rmtree("cropped_imgs")
 
-# word_preds = recognition_predictor([crop for page_crops in crops for crop in page_crops])
+# # word_preds = recognition_predictor([crop for page_crops in crops for crop in page_crops])
 
-print(word_preds)
+# print(word_preds)
