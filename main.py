@@ -27,20 +27,26 @@ crops, location_preds = utils.prepare_crops_(
     assume_straight_pages=True
     
 )
-
+recognition_predictor = indic_trocr(model_path="trocr_files")
 # print(crops)
-for cropped_img in crops:
+for num, cropped_img in enumerate(crops):
     if not os.path.isdir("cropped_imgs"):
         os.mkdir("cropped_imgs")
-    cv2.imwrite(os.path.join("cropped_imgs", cropped_img), )
-# trocr prediction
-recognition_predictor = indic_trocr(model_path="trocr_files")
-
-for img in os.listdir("cropped_imgs"):
-    img_ = Image.open(os.path.join("cropped_imgs", img)).convert("RGB")
+    cv2.imwrite(os.path.join("cropped_imgs", f"img_{num}.jpg"),cropped_img)
+    img_ = Image.open(os.path.join("cropped_imgs", f"img_{num}.jpg")).convert("RGB")
     
     word_preds = recognition_predictor(img_)
     print(word_preds["preds"])
+
+    
+# trocr prediction
+
+
+# for img in os.listdir("cropped_imgs"):
+#     img_ = Image.open(os.path.join("cropped_imgs", img)).convert("RGB")
+    
+#     word_preds = recognition_predictor(img_)
+#     print(word_preds["preds"])
 
 shutil.rmtree("cropped_imgs")
 
