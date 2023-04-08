@@ -29,7 +29,7 @@ crops, location_preds = utils.prepare_crops_(
 )
 recognition_predictor = indic_trocr(model_path="trocr_files")
 # print(crops)
-for num, cropped_img in enumerate(crops):
+for num, cropped_img in enumerate(crops[0]):
     if not os.path.isdir("cropped_imgs"):
         os.mkdir("cropped_imgs")
     cv2.imwrite(os.path.join("cropped_imgs", f"img_{num}.jpg"),cropped_img)
