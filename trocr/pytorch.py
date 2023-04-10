@@ -5,7 +5,6 @@ from transformers import ViTFeatureExtractor, RobertaTokenizer, TrOCRProcessor
 from transformers import VisionEncoderDecoderModel
 from transformers import TrOCRProcessor
 from PIL import Image
-import matplotlib.pyplot as plt
 import torch
 from torch import nn
 from typing import Dict, Any, Callable, List, Optional, Tuple, Union
@@ -46,7 +45,7 @@ class TROCR(nn.Module):
         self.processor = TrOCRProcessor(feature_extractor=self.feature_extractor, tokenizer=self.tokenizer)
         self.model = VisionEncoderDecoderModel.from_pretrained(models_dir_path)
         
-    def forward(self, x: torch.Tensor):
+    def forward(self, x:torch.Tensor):
         # x is the image read as torch.Tensor
         pixel_values = self.processor(x, return_tensors="pt").pixel_values
         generated_ids = self.model.generate(pixel_values)

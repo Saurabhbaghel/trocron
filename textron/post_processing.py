@@ -6,7 +6,7 @@ import numpy as np
 from numpy import invert
 
 ### Postprocessing Step
-def get_bboxes(file):
+def get_bboxes(file:str):
     # TODO change this saving of the images and then retreiving, or del them afterwards
     img = cv2.imread(RESULTS_DIR + file)
 

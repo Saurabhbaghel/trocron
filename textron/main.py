@@ -416,6 +416,7 @@ def cage(file, X):
     os.remove(U_path_pkl)
     os.remove(log_path_cage_1)
     os.remove(path_json)
+    # TODO make the file as basename
     io.imsave(RESULTS_DIR + file, labels)
 
 
@@ -475,6 +476,7 @@ class Textron(nn.Module):
         self.pretrained = pretrained
         self.pretrained_backbone = pretrained_backbone
         self.assume_straight_pages = assume_straight_pages
+        
     def postprocess(self, imgfile: str):
         preds = get_bboxes(imgfile)
         return preds
